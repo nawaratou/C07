@@ -3,17 +3,23 @@
 
 int main() {
     char str[200];
-    int i = 0, mots = 0;
+    int i = 0, inWord = 0, count = 0;
 
-    scanf(" %[^\n]", str);
+    // Lire toute la ligne
+    fgets(str, sizeof(str), stdin);
 
     while (str[i] != '\0') {
-        if ((str[i] != ' ' && (str[i+1] == ' ' || str[i+1] == '\0'))) {
-            mots++;
+        if (str[i] != ' ' && str[i] != '\n') {
+            if (!inWord) {
+                count++;
+                inWord = 1;
+            }
+        } else {
+            inWord = 0;
         }
         i++;
     }
 
-    printf("Nombre de mots : %d\n", mots);
+    printf("Nombre de mots : %d\n", count);
     return 0;
 }
